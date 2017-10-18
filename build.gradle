@@ -1,0 +1,48 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = 2.3
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = pGroup
+version = pVersion
+
+if (project.hasProperty("topobyte")) {
+    apply from: 'file:///' + System.getProperty("user.home") \
+        + '/.gradle/topobyte.gradle'
+}
+
+repositories {
+    maven {
+        url 'http://mvn.topobyte.de'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'de.topobyte:melon-paths:0.0.1'
+    compile 'com.vladsch.flexmark:flexmark:0.22.20'
+    compile 'com.vladsch.flexmark:flexmark-ext-tables:0.22.20'
+    compile 'com.vladsch.flexmark:flexmark-ext-gfm-strikethrough:0.22.20'
+    compile 'org.jsoup:jsoup:1.8.3'
+    compile 'commons-io:commons-io:2.4'
+
+    testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
+    testRuntime 'log4j:log4j:1.2.16'
+}
+
+task copyJars(type: Copy) {
+    into "$buildDir/lib-run"
+    from jar
+}
+
+task copyDeps(type: Copy) {
+    into "$buildDir/lib-run"
+    from configurations.runtime
+}
+
+task createRuntime(dependsOn: [copyJars, copyDeps]) {
+    description 'Setup the execution environment for the main scripts'
+}
