@@ -29,6 +29,9 @@ dependencies {
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'commons-io:commons-io:2.4'
 
+    runtime 'org.slf4j:slf4j-log4j12:1.6.1'
+    runtime 'log4j:log4j:1.2.16'
+
     testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
     testRuntime 'log4j:log4j:1.2.16'
 }
