@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    compile 'de.topobyte:melon-paths:0.0.1'
+    compile 'de.topobyte:melon-paths:0.0.2'
     compile 'com.vladsch.flexmark:flexmark:0.22.20'
     compile 'com.vladsch.flexmark:flexmark-ext-tables:0.22.20'
     compile 'com.vladsch.flexmark:flexmark-ext-gfm-strikethrough:0.22.20'
